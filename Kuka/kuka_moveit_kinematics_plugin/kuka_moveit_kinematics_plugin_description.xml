@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='ASCII'?>
+<library path="lib/libkuka_moveit_kinematics_plugin">
+  <class name="kuka_kinematics/KukaKinematicsMoveitPlugin" type="kuka_kinematics::KukaKinematicsMoveitPlugin" base_class_type="kinematics::KinematicsBase">
+    <description>Fast kinematics plugin for Kuka arm</description>
+  </class>
+</library>

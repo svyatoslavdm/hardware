@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+	
+	<xacro:macro name="kuka_kr6_r900_joint_transmission" params="joint_name">
+		<transmission name="${joint_name}_trans">
+			<type>transmission_interface/SimpleTransmission</type>
+			<joint name="${joint_name}"/>
+			<actuator name="${joint_name}_motor">
+				<hardwareInterface>EffortJointInterface</hardwareInterface>
+				<mechanicalReduction>1</mechanicalReduction>
+			</actuator>
+		</transmission>
+	</xacro:macro>
+	
+	<xacro:macro name="kuka_kr6_r900_transmission" params="prefix">
+		<xacro:kuka_kr6_r900_joint_transmission joint_name="${prefix}A1" />
+		<xacro:kuka_kr6_r900_joint_transmission joint_name="${prefix}A2" />
+		<xacro:kuka_kr6_r900_joint_transmission joint_name="${prefix}A3" />
+		<xacro:kuka_kr6_r900_joint_transmission joint_name="${prefix}A4" />
+		<xacro:kuka_kr6_r900_joint_transmission joint_name="${prefix}A5" />
+		<xacro:kuka_kr6_r900_joint_transmission joint_name="${prefix}A6" />
+	</xacro:macro>
+	
+</robot>

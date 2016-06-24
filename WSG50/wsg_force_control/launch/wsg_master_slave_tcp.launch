@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<launch>
+  
+  <arg name="com_mode" default="script" /><!-- or script, auto_update -->
+  
+  <param name="loop_rate" type="double" value="40"/>
+  <param name="force_threshold" type="double" value="4"/>
+  
+  <node  name="wsg_50_driver_master"  pkg="wsg_50_driver" type="wsg_50_ip" output="screen">
+	<param name="ip" type="string" value="192.168.5.246"/>
+	<param name="port" type="int" value="1000"/>
+    <param name="protocol" type="string" value="tcp"/>
+    <param name="com_mode" type="string" value="$(arg com_mode)"/>
+    <param name="rate" type="double" value="100"/>
+    <param name="grasping_force" type="double" value="80"/>
+    <param name="use_fmf" type="bool" value="true"/> 
+  </node>
+  
+  <node  name="wsg_50_driver_slave"  pkg="wsg_50_driver" type="wsg_50_ip" output="screen">
+	<param name="ip" type="string" value="192.168.5.247"/>
+	<param name="port" type="int" value="1000"/>
+    <param name="protocol" type="string" value="tcp"/>
+    <param name="com_mode" type="string" value="$(arg com_mode)"/>
+    <param name="rate" type="double" value="100"/>
+    <param name="grasping_force" type="double" value="80"/>
+    <param name="use_fmf" type="bool" value="true"/> 
+  </node>
+  
+  <node  name="wsg_master_slave_tcp"  pkg="wsg_force_control" type="wsg_master_slave_tcp" output="screen" />
+  
+<!--  <param name="robot_description" textfile="$(find schunk_wsg50_description)/urdf/schunk_wsg_50.urdf" />-->
+<!--  <param name="use_gui" value="False"/>-->
+<!--  <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" />-->
+<!--  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find urdf_tutorial)/urdf.rviz" required="true"/>-->
+  
+  
+</launch>
+

@@ -1,0 +1,186 @@
+<?xml version="1.0" ?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <xacro:macro name="kinect" params="prefix parent *origin">
+		
+    <joint name="${prefix}base_joint" type="fixed">
+	    <parent link="${parent}"/>
+	    <child link="${prefix}fts_link"/>
+	    <insert_block name="origin" />
+    </joint>
+    
+  <!-- link list -->
+  
+  <!-- FTS LINK -->
+  <link name="${prefix}fts_link">
+    <inertial>
+      <mass value="1.2"/>
+      <origin xyz="0 0 0"/>
+      <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0.0 0 0.0"/>
+      <geometry>
+        <mesh filename="package://kinect_description/meshes/fts.stl" scale="1 1 1"/>
+      </geometry>
+     <material name="orange_color">
+        <color rgba="1 0.6 0.3 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0.0 0 0.0"/>
+      <geometry>
+        <mesh filename="package://kinect_description/meshes/fts.stl" scale="1 1 1"/>
+      </geometry>
+    </collision>
+  </link>
+  
+  <!-- KIN ADAPTER LINK -->
+  <link name="${prefix}kin_adapter_link">
+    <inertial>
+      <mass value="1.2"/>
+      <origin xyz="0 0 0"/>
+      <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0.0 0 0.0"/>
+      <geometry>
+        <mesh filename="package://kinect_description/meshes/kin_adapter.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+     <material name="orange_color">
+        <color rgba="1 0.6 0.3 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0.0 0 0.0"/>
+      <geometry>
+        <mesh filename="package://kinect_description/meshes/kin_adapter.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+  
+  <!-- KINECT LINK -->
+  <link name="${prefix}kinect_link">
+    <inertial>
+      <mass value="1.2"/>
+      <origin xyz="0 0 0"/>
+      <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0.0 0 0"/>
+      <geometry>
+        <mesh filename="package://kinect_description/meshes/kinect.stl" scale="1 1 1"/>
+      </geometry>
+     <material name="orange_color">
+        <color rgba="1 0.6 0.3 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0.0 0 0"/>
+      <geometry>
+        <mesh filename="package://kinect_description/meshes/kinect.stl" scale="1 1 1"/>
+      </geometry>
+    </collision>
+  </link>
+  
+  <!-- GRIPPER ADAPTER LINK -->
+  <link name="${prefix}gripper_adapter_link">
+    <inertial>
+      <mass value="0.1"/>
+      <origin xyz="0 0 0"/>
+      <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0.0 0 0"/>
+      <geometry>
+        <mesh filename="package://kinect_description/meshes/gripper_adapter.stl" scale="1 1 1"/>
+      </geometry>
+     <material name="orange_color">
+        <color rgba="1 0.6 0.3 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://kinect_description/meshes/gripper_adapter.stl" scale="1 1 1"/>
+      </geometry>
+    </collision>
+  </link> 
+
+  <!-- JOINTS -->
+  <joint name="${prefix}fts_joint_kin_adapter" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 0.057"/>
+    <parent link="${prefix}fts_link"/>
+    <child link="${prefix}kin_adapter_link"/>
+  </joint>
+  
+  <joint name="${prefix}kin_adapter_joint_kinect" type="fixed">
+    <origin rpy="-1.57 0 -1.57" xyz="0.06 0.034 0.0"/>
+    <parent link="${prefix}kin_adapter_link"/>
+    <child link="${prefix}kinect_link"/>
+  </joint>
+  
+  <joint name="${prefix}kin_adapter_joint_gripper_adapter" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 0.02"/>
+    <parent link="${prefix}kin_adapter_link"/>
+    <child link="${prefix}gripper_adapter_link"/>
+  </joint>
+  
+  	<material name="${prefix}dark_silver">
+		<color rgba="0.15 0.15 0.15 1"/>
+	</material>
+
+
+
+	<!-- sensor links -->
+
+	<link name="camera_link"/>
+	<link name="camera_frame"/>
+     <link name="camera_ir_link"/>
+	<link name="camera_rgb_link"/>
+	<link name="camera_rgb_frame"/>
+	<link name="camera_ir_optical_frame"/>
+	<link name="camera_rgb_optical_frame"/>
+	<!-- end of sensor links -->
+
+
+	<!-- attatchment joint to world or a robot -->
+               <!-- Replaces the fixed joint destined for calibration by the calibration definition -->
+	<xacro:calibration_definitions child_link="camera_link" parent_link="${prefix}kinect_link" />
+
+		<!-- sensor joints -->
+	<joint name="$camera_frame_joint" type="fixed">
+		<parent link="camera_link"/>
+		<child link="camera_frame"/>
+		<origin rpy="0 0 0" xyz="0 0 0"/>
+	</joint>
+	<joint name="camera_ir_joint" type="fixed">
+		<parent link="camera_frame"/>
+		<child link="camera_ir_link"/>
+		<origin rpy="0 0 0" xyz="0 0 0"/>
+	</joint>
+	<joint name="camera_ir_optical_frame_joint" type="fixed">
+		<parent link="camera_ir_link"/>
+		<child link="camera_ir_optical_frame"/>
+		<origin rpy="-1.57 0 -1.57" xyz="0 0 0"/>
+	</joint>	
+	<joint name="camera_rgb_joint" type="fixed">
+		<parent link="camera_ir_link"/>
+		<child link="camera_rgb_link"/>
+		<origin rpy="0 0 0" xyz="0 -0.03 0"/>
+	</joint>
+	<joint name="camera_rgb_frame_joint" type="fixed">
+		<parent link="camera_rgb_optical_frame"/>
+		<child link="camera_rgb_frame"/>
+		<origin rpy="0 0 0" xyz="0 0.0 0"/>
+        </joint>
+	<joint name="camera_rgb_optical_frame_joint" type="fixed">
+		<parent link="camera_rgb_link"/>
+		<child link="camera_rgb_optical_frame"/>
+		<origin rpy="-1.57 0 -1.57" xyz="0 0 0"/>
+	</joint>	
+	<!-- end of sensor joints -->	
+  
+	</xacro:macro>
+</robot>
+

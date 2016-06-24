@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:macro name="kawasaki_fs03n_gazebo" params="prefix">
+
+    <gazebo reference="${prefix}base_link">
+      <material>Gazebo/Grey</material>
+      <turnGravityOff>true</turnGravityOff>
+    </gazebo>
+
+    <gazebo reference="${prefix}link_1">
+      <material>Gazebo/Grey</material>
+      <turnGravityOff>true</turnGravityOff>
+    </gazebo>
+  
+    <gazebo reference="${prefix}link_2">
+      <material>Gazebo/Grey</material>
+      <turnGravityOff>true</turnGravityOff>
+    </gazebo>
+  
+    <gazebo reference="${prefix}link_3">
+      <material>Gazebo/Grey</material>
+      <turnGravityOff>true</turnGravityOff>
+    </gazebo>
+  
+    <gazebo reference="${prefix}link_4">
+      <material>Gazebo/Grey</material>
+      <turnGravityOff>true</turnGravityOff>
+    </gazebo>
+
+    <gazebo reference="${prefix}link_5">
+      <material>Gazebo/Grey</material>
+      <turnGravityOff>true</turnGravityOff>
+    </gazebo>
+
+    <gazebo reference="${prefix}link_6">
+      <material>Gazebo/Grey</material>
+      <turnGravityOff>true</turnGravityOff>
+    </gazebo>
+
+  </xacro:macro>
+
+</robot>

@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<launch>
+  <node  name="schunk_egn160_sensors"  pkg="schunk_egn160_driver" type="schunk_egn160_sensors_node" output="screen">
+    <param name="distance" type="double" value="20.0"/>
+  </node>
+  <node  name="schunk_egn160_gripper"  pkg="schunk_egn160_driver" type="schunk_egn160_gripper_node" output="screen">
+	<param name="device" type="string" value="/dev/ttyUSB0"/>
+    <param name="period" type="double" value="0.1"/>
+    <remap from="/schunk_egn160_gripper/joint_states" to="/joint_states" />
+  </node>
+</launch>

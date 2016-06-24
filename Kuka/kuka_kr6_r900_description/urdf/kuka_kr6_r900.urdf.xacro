@@ -1,0 +1,286 @@
+<?xml version="1.0" ?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+	
+	<xacro:include filename="$(find kuka_kr6_r900_description)/urdf/kuka_kr6_r900.gazebo.xacro" />
+	<xacro:include filename="$(find kuka_kr6_r900_description)/urdf/kuka_kr6_r900.transmission.xacro" />
+	
+	<xacro:macro name="kuka_kr6_r900" params="prefix parent *origin">
+	
+		<joint name="${prefix}base_joint" type="fixed">
+			<parent link="${parent}"/>
+			<child link="${prefix}base_link"/>
+			<insert_block name="origin" />
+		</joint>	
+
+		<!-- BASE LINK -->
+		<link name="${prefix}base_link">
+		    <inertial>
+		        <mass value="1.2" />
+		        <origin xyz="0.0 0.0 0.0" />
+		        <inertia  ixx="1.0" ixy="0.0"  ixz="0.0"  iyy="1.0"  iyz="0.0"  izz="1.0" />
+		    </inertial>
+		
+		    <visual>
+		        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+		        <geometry>
+		            <mesh filename="package://kuka_kr6_r900_description/meshes/visual/link_0.stl" scale="1.0 1.0 1.0"/>
+		        </geometry>
+		        <material name="black">
+		            <color rgba="0.1 0.1 0.1 1.0"/>
+		        </material>
+		    </visual>
+		
+		    <collision>
+		        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+		        <geometry>
+		            <mesh filename="package://kuka_kr6_r900_description/meshes/collision/link_0.stl" scale="1.0 1.0 1.0"/>
+		        </geometry>
+		    </collision>
+		</link>
+		
+		<!-- LINK 1 -->
+		<link name="${prefix}link_1">
+		    <inertial>
+		        <mass value="1.2" />
+		        <origin xyz="0.0 0.0 0.0" />
+		        <inertia  ixx="1.0" ixy="0.0"  ixz="0.0"  iyy="1.0"  iyz="0.0"  izz="1.0" />
+		    </inertial>
+		
+		    <visual>
+		        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+		        <geometry>
+		            <mesh filename="package://kuka_kr6_r900_description/meshes/visual/link_1.stl" scale="1.0 1.0 1.0"/>
+		        </geometry>
+		        <material name="orange">
+		            <color rgba="1.0 0.4 0.0 1.0"/>
+		        </material>
+		    </visual>
+		
+		    <collision>
+		        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+		        <geometry>
+		            <mesh filename="package://kuka_kr6_r900_description/meshes/collision/link_1.stl" scale="1.0 1.0 1.0"/>
+		        </geometry>
+		    </collision>
+		</link>
+		
+		<!-- LINK 2 -->
+		<link name="${prefix}link_2">
+		    <inertial>
+		        <mass value="1.2" />
+		        <origin xyz="0.0 0.0 0.0" />
+		        <inertia  ixx="1.0" ixy="0.0"  ixz="0.0"  iyy="1.0"  iyz="0.0"  izz="1.0" />
+		    </inertial>
+		
+		    <visual>
+		        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+		        <geometry>
+		            <mesh filename="package://kuka_kr6_r900_description/meshes/visual/link_2.stl" scale="1.0 1.0 1.0"/>
+		        </geometry>
+		        <material name="orange" />
+		    </visual>
+		
+		    <collision>
+		        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+		        <geometry>
+		            <mesh filename="package://kuka_kr6_r900_description/meshes/collision/link_2.stl" scale="1.0 1.0 1.0"/>
+		        </geometry>
+		    </collision>
+		</link>
+		
+		<!-- LINK 3 -->
+		<link name="${prefix}link_3">
+		    <inertial>
+		        <mass value="1.2" />
+		        <origin xyz="0.0 0.0 0.0" />
+		        <inertia  ixx="1.0" ixy="0.0"  ixz="0.0"  iyy="1.0"  iyz="0.0"  izz="1.0" />
+		    </inertial>
+		
+		    <visual>
+		        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+		        <geometry>
+		            <mesh filename="package://kuka_kr6_r900_description/meshes/visual/link_3.stl" scale="1.0 1.0 1.0"/>
+		        </geometry>
+		        <material name="orange" />
+		    </visual>
+		
+		    <collision>
+		        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+		        <geometry>
+		            <mesh filename="package://kuka_kr6_r900_description/meshes/collision/link_3.stl" scale="1.0 1.0 1.0"/>
+		        </geometry>
+		    </collision>
+		</link>
+		
+		<!-- LINK 4 -->
+		<link name="${prefix}link_4">
+		    <inertial>
+		        <mass value="1.2" />
+		        <origin xyz="0.0 0.0 0.0" />
+		        <inertia  ixx="1.0" ixy="0.0"  ixz="0.0"  iyy="1.0"  iyz="0.0"  izz="1.0" />
+		    </inertial>
+		
+		    <visual>
+		        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+		        <geometry>
+		            <mesh filename="package://kuka_kr6_r900_description/meshes/visual/link_4.stl" scale="1.0 1.0 1.0"/>
+		        </geometry>
+		        <material name="orange" />
+		    </visual>
+		
+		    <collision>
+		        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+		        <geometry>
+		            <mesh filename="package://kuka_kr6_r900_description/meshes/collision/link_4.stl" scale="1.0 1.0 1.0"/>
+		        </geometry>
+		    </collision>
+		</link>
+		
+		<!-- LINK 5 -->
+		<link name="${prefix}link_5">
+		    <inertial>
+		        <mass value="1.2" />
+		        <origin xyz="0.0 0.0 0.0" />
+		        <inertia  ixx="1.0" ixy="0.0"  ixz="0.0"  iyy="1.0"  iyz="0.0"  izz="1.0" />
+		    </inertial>
+		
+		    <visual>
+		        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+		        <geometry>
+		            <mesh filename="package://kuka_kr6_r900_description/meshes/visual/link_5.stl" scale="1.0 1.0 1.0"/>
+		        </geometry>
+		        <material name="orange" />
+		    </visual>
+		
+		    <collision>
+		        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+		        <geometry>
+		            <mesh filename="package://kuka_kr6_r900_description/meshes/collision/link_5.stl" scale="1.0 1.0 1.0"/>
+		        </geometry>
+		    </collision>
+		</link>
+		
+		<!-- LINK 6 -->
+		<link name="${prefix}link_6">
+		    <inertial>
+		        <mass value="1.2" />
+		        <origin xyz="0.0 0.0 0.0" />
+		        <inertia  ixx="1.0" ixy="0.0"  ixz="0.0"  iyy="1.0"  iyz="0.0"  izz="1.0" />
+		    </inertial>
+		
+		    <visual>
+		        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+		        <geometry>
+		            <mesh filename="package://kuka_kr6_r900_description/meshes/visual/link_6.stl" scale="1.0 1.0 1.0"/>
+		        </geometry>
+		        <material name="orange" />
+		    </visual>
+		
+		    <collision>
+		        <origin xyz="0.0 0.0 0.0" rpy="0.0 0.0 0.0" />
+		        <geometry>
+		            <mesh filename="package://kuka_kr6_r900_description/meshes/collision/link_6.stl" scale="1.0 1.0 1.0"/>
+		        </geometry>
+		    </collision>
+		</link>
+		
+		<!-- TOOL -->
+		<link name="${prefix}tool">
+		    <inertial>
+		        <mass value="0.00001" />
+		        <origin xyz="0.0 0.0 0.0" />
+		        <inertia  ixx="1.0" ixy="0.0"  ixz="0.0"  iyy="1.0"  iyz="0.0"  izz="1.0" />
+		    </inertial>
+		    <visual>
+			<geometry>
+			   <sphere radius="0.005"/>
+			</geometry>
+			<origin rpy="0 0 0" xyz="0 0 0"/>
+		        <material name="orange">
+		            <color rgba="1.0 0.4 0.0 1.0"/>
+		        </material>
+		    </visual>
+		</link>		
+		
+		<!-- JOINTS -->
+		<joint name="${prefix}A1" type="revolute">
+		    <origin xyz="0.0 0.0 0.217" rpy = "3.14159 0.0 0.0"/>
+		    <parent link="${prefix}base_link"/>
+		    <child link="${prefix}link_1"/>
+		    <limit effort="10.0" 
+		           velocity="1.0"
+		           lower="-2.96" 
+		           upper="2.96"/>
+		    <axis xyz="0 0 1" />
+		</joint>
+		
+		<joint name="${prefix}A2" type="revolute">
+		    <origin xyz="0.025 0.0 -0.183" rpy = "1.570796 -1.570796 0.0"/>
+		    <parent link="${prefix}link_1"/>
+		    <child link="${prefix}link_2"/>
+		    <limit effort="10.0" 
+		           velocity="1.0"
+		           lower="-3.31444" 
+		           upper="0.785"/>
+		    <axis xyz="0 0 1" />
+		</joint>
+		
+		<joint name="${prefix}A3" type="revolute">
+		    <origin xyz="0.0 -0.455 0.0" rpy = "0.0 0.0 -1.570796"/>
+		    <parent link="${prefix}link_2"/>
+		    <child link="${prefix}link_3"/>
+		    <limit effort="10.0" 
+		           velocity="1.0"
+		           lower="-2.09333" 
+		           upper="2.72133"/>
+		    <axis xyz="0 0 1" />
+		</joint>
+		
+		<joint name="${prefix}A4" type="revolute">
+		    <origin xyz="0.0 -0.035 0.0" rpy = "1.570796 0.0 -1.570796"/>
+		    <parent link="${prefix}link_3"/>
+		    <child link="${prefix}link_4"/>
+		    <limit effort="10.0" 
+		           velocity="1.0"
+		           lower="-2.09333" 
+		           upper="2.72133"/>
+		    <axis xyz="0 0 1" />
+		</joint>
+		
+		<joint name="${prefix}A5" type="revolute">
+		    <origin xyz="0.0 0.0 -0.42" rpy = "-1.570796 0.0 0.0"/>
+		    <parent link="${prefix}link_4"/>
+		    <child link="${prefix}link_5"/>
+		    <limit effort="10.0" 
+		           velocity="1.0"
+		           lower="-2.09333" 
+		           upper="2.09333"/>
+		    <axis xyz="0 0 1" />
+		</joint>
+		
+		<joint name="${prefix}A6" type="revolute">
+		    <origin xyz="0.0 0.0665 0.0" rpy = "1.570796 0.0 0.0"/>
+		    <parent link="${prefix}link_5"/>
+		    <child link="${prefix}link_6"/>
+		    <limit effort="10.0" 
+		           velocity="1.0"
+		           lower="-3.1415926" 
+		           upper="3.1415"/>
+		    <axis xyz="0 0 1" />
+		</joint>
+		
+		<joint name="${prefix}joint_tool" type="fixed">
+		    <origin xyz="0.0 0 -0.014" rpy = "0.0 3.14159 -1.570796"/>
+<!-- 		  <origin xyz="0.0 0 -0.014" rpy = "0.0 2.8 -1.570796"/> -->
+		    <parent link="${prefix}link_6"/>
+		    <child link="${prefix}tool"/>
+		</joint>		
+
+		<!-- extensions -->
+		<xacro:kuka_kr6_r900_gazebo prefix="${prefix}" />
+		<xacro:kuka_kr6_r900_transmission prefix="${prefix}" />
+		
+	</xacro:macro>
+</robot>
+
+

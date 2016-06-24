@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:macro name="schunk_ezn_64_gazebo" params="name">
+  	
+	<gazebo reference="${name}_link">
+		<material>Gazebo/Grey</material>
+		<static>true</static>
+		<turnGravityOff>true</turnGravityOff>
+		<!--selfCollide>false</selfCollide-->
+	</gazebo>
+
+  </xacro:macro>
+
+</robot>
+
+

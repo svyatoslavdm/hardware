@@ -1,0 +1,15 @@
+<library path="libkawasaki_hardware">
+	
+	<class name="kawasaki_hardware/KawasakiHW" type="kawasaki_hardware::KawasakiHW" base_class_type="composite_hardware_interface::DeviceHW">
+		<description>Controller for kawasaki robot arm.</description>
+	</class>
+	
+</library>
+
+<library path="libkawasaki_hardware_mock">
+	
+	<class name="kawasaki_hardware_mock/KawasakiHW" type="kawasaki_hardware::KawasakiHW" base_class_type="composite_hardware_interface::DeviceHW">
+		<description>Controller for kawasaki robot arm.</description>
+	</class>
+	
+</library>

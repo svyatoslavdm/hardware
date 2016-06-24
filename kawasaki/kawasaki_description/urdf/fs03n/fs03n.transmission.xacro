@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+	
+	<xacro:macro name="kawasaki_fs03n_joint_transmission" params="joint_name">
+		<transmission name="${joint_name}_trans">
+			<type>transmission_interface/SimpleTransmission</type>
+			<joint name="${joint_name}"/>
+			<actuator name="${joint_name}_motor">
+				<hardwareInterface>EffortJointInterface</hardwareInterface>
+				<mechanicalReduction>1</mechanicalReduction>
+			</actuator>
+		</transmission>
+	</xacro:macro>
+	
+	<xacro:macro name="kawasaki_fs03n_transmission" params="prefix">
+		<xacro:kawasaki_fs03n_joint_transmission joint_name="${prefix}JT1" />
+		<xacro:kawasaki_fs03n_joint_transmission joint_name="${prefix}JT2" />
+		<xacro:kawasaki_fs03n_joint_transmission joint_name="${prefix}JT3" />
+		<xacro:kawasaki_fs03n_joint_transmission joint_name="${prefix}JT4" />
+		<xacro:kawasaki_fs03n_joint_transmission joint_name="${prefix}JT5" />
+		<xacro:kawasaki_fs03n_joint_transmission joint_name="${prefix}JT6" />
+	</xacro:macro>
+	
+</robot>

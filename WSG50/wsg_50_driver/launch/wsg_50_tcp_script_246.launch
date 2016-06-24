@@ -1,0 +1,16 @@
+<?xml version="1.0" ?>
+<launch>
+  <arg name="com_mode" default="script" /><!-- variants: script, auto_update, polling -->
+
+  <node  name="wsg_50_driver"  pkg="wsg_50_driver" type="wsg_50_ip" output="screen">
+	<param name="ip" type="string" value="192.168.5.246"/>
+	<param name="port" type="int" value="1000"/>
+    <param name="protocol" type="string" value="tcp"/>
+    <param name="com_mode" type="string" value="$(arg com_mode)"/>
+    <param name="rate" type="double" value="20"/> <!-- WSG50 HW revision 2: up to 30 Hz with script; 140Hz with auto_update -->
+    <param name="grasping_force" type="double" value="80"/>
+    <param name="use_fmf" type="bool" value="true"/>
+  </node>
+
+</launch>
+

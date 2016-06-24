@@ -1,0 +1,4 @@
+<launch>
+	<arg name="model" default="fs03n" />	
+    <param name="robot_description" command="$(find xacro)/xacro.py '$(find kawasaki_description)/urdf/$(model)/$(model)_robot.urdf.xacro'" /> 
+</launch>

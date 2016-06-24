@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<launch>
+
+  <arg name="com_mode" default="script" /><!-- or script, auto_update -->
+  
+  <node  name="wsg_50_driver_master"  pkg="wsg_50_driver" type="wsg_50_ip" output="screen">
+	<param name="ip" type="string" value="192.168.5.244"/>
+	<param name="port" type="int" value="1000"/>
+    <param name="protocol" type="string" value="tcp"/>
+    <param name="com_mode" type="string" value="$(arg com_mode)"/>
+    <param name="rate" type="double" value="100"/>
+    <param name="grasping_force" type="double" value="80"/>
+    <param name="use_fmf" type="bool" value="true"/> 
+  </node>
+  <--
+  <node  name="wsg_50_driver_slave"  pkg="wsg_50_driver" type="wsg_50_ip" output="screen">
+	<param name="ip" type="string" value="192.168.5.247"/>
+	<param name="port" type="int" value="1000"/>
+    <param name="protocol" type="string" value="tcp"/>
+    <param name="com_mode" type="string" value="$(arg com_mode)"/>
+    <param name="rate" type="double" value="100"/>
+    <param name="grasping_force" type="double" value="80"/>
+    <param name="use_fmf" type="bool" value="true"/> 
+  </node>
+  -->
+  
+<!--  <node  name="wsg_master_slave_tcp"  pkg="wsg_force_control" type="wsg_master_slave_tcp" output="screen" />-->
+ 
+</launch>
+

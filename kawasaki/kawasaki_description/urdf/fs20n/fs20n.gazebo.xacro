@@ -1,0 +1,74 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <xacro:macro name="kawasaki_fs20n_gazebo" params="prefix">
+
+	<!--gazebo reference="${prefix}JT1">
+		<provideFeedback value="true"/>		
+		<provide_feedback>true</provide_feedback>
+	</gazebo>
+	<gazebo reference="${prefix}JT2">
+		<provideFeedback value="true"/>
+		<provide_feedback>true</provide_feedback>		
+	</gazebo>
+	<gazebo reference="${prefix}JT3">
+		<provideFeedback value="true"/>
+		<provide_feedback>true</provide_feedback>		
+	</gazebo>
+	<gazebo reference="${prefix}JT4">
+		<provideFeedback value="true"/>
+		<provide_feedback>true</provide_feedback>		
+	</gazebo>
+	<gazebo reference="${prefix}JT5">
+		<provideFeedback value="true"/>
+		<provide_feedback>true</provide_feedback>		
+	</gazebo>
+	<gazebo reference="${prefix}JT6">
+		<provideFeedback value="true"/>
+		<provide_feedback>true</provide_feedback>		
+	</gazebo--> 
+  	
+	<gazebo reference="${prefix}base_link">
+		<material>Gazebo/Grey</material>
+		<static>true</static>
+		<turnGravityOff>true</turnGravityOff>
+		<!--selfCollide>false</selfCollide-->
+	</gazebo>
+	<gazebo reference="${prefix}link_1">
+		<material>Gazebo/Grey</material>
+		<turnGravityOff>true</turnGravityOff>
+		<!--selfCollide>false</selfCollide-->
+	</gazebo>
+	<gazebo reference="${prefix}link_2">
+		<material>Gazebo/Grey</material>
+		<turnGravityOff>true</turnGravityOff>
+		<!--selfCollide>false</selfCollide-->
+	</gazebo>
+	<gazebo reference="${prefix}link_3">
+		<material>Gazebo/Grey</material>
+		<turnGravityOff>true</turnGravityOff>
+		<!--selfCollide>false</selfCollide-->
+	</gazebo>
+	<gazebo reference="${prefix}link_4">
+		<material>Gazebo/Grey</material>
+		<turnGravityOff>true</turnGravityOff>
+		<!--selfCollide>false</selfCollide-->
+	</gazebo>
+	<gazebo reference="${prefix}link_5">
+		<material>Gazebo/Grey</material>
+		<turnGravityOff>true</turnGravityOff>
+		<!--selfCollide>false</selfCollide-->
+	</gazebo>
+	<gazebo reference="${prefix}link_6">
+		<material>Gazebo/Grey</material>
+		<turnGravityOff>true</turnGravityOff>
+		<!--selfCollide>false</selfCollide-->
+	</gazebo>
+	<gazebo reference="${prefix}tool">
+		<turnGravityOff>true</turnGravityOff>
+		<!--selfCollide>false</selfCollide-->
+	</gazebo>	
+
+  </xacro:macro>
+
+</robot>

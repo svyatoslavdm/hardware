@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<launch>
+  <node  name="wsg_50_driver"  pkg="wsg_50_driver" type="wsg_50_rs" output="screen">
+	<param name="device" type="string" value="/dev/ttyUSB1"/>
+	<param name="bitrate" type="int" value="38400"/>
+    <param name="rate" type="double" value="30"/>
+    <param name="grasping_force" type="double" value="60"/>
+    <param name="use_fmf" type="bool" value="true"/>
+  </node>
+
+</launch>
+

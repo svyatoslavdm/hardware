@@ -1,0 +1,4 @@
+<launch>
+	<arg name="model" default="fs03n" />	
+    <param name="robot_description" command="$(find xacro)/xacro.py '$(find kuka_kr6_r900_description)/urdf/kuka_kr6_r900.test.urdf.xacro'" />
+</launch>

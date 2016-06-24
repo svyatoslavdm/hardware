@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<launch>
+
+  <arg name="com_mode" default="script" />
+  <arg name="use_com" default="false" />
+  
+  <node  name="wsg_50_driver"  pkg="wsg_50_driver" type="wsg_50_ip" output="screen">
+	<param name="ip" type="string" value="192.168.5.244"/>
+	<param name="port" type="int" value="1000"/>
+    <param name="protocol" type="string" value="tcp"/>
+    <param name="com_mode" type="string" value="$(arg com_mode)"/>
+    <param name="rate" type="double" value="100"/> <!-- WSG50 HW revision 2: up to 30 Hz with script; 140Hz with auto_update -->
+    <param name="grasping_force" type="double" value="80"/>
+  </node>
+  
+  <param name="use_com" type="bool" value="$(arg use_com)" />
+  <node  name="wsg_force_control"  pkg="wsg_force_control" type="wsg_force_control" output="screen" />
+   	
+<!--  </node> -->
+   
+<!--  <param name="robot_description" textfile="$(find schunk_wsg50_description)/urdf/schunk_wsg_50.urdf" />-->
+<!--  <param name="use_gui" value="False"/>-->
+<!--  <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" />-->
+<!--  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find urdf_tutorial)/urdf.rviz" required="true"/>-->
+  
+  
+</launch>
+

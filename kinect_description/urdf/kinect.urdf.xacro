@@ -1,0 +1,57 @@
+<?xml version="1.0" ?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <xacro:macro name="kinect" params="prefix parent *origin">
+		
+ 
+  <!-- link list -->
+  
+ 
+  <!-- KINECT LINK -->
+  <link name="${prefix}link">
+    <inertial>
+      <mass value="1.2"/>
+      <origin xyz="0 0 0"/>
+      <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0.0 0 0"/>
+      <geometry>
+        <mesh filename="package://kinect_description/meshes/kinect_bed.stl" scale="1 1 1"/>
+      </geometry>
+     <material name="orange_color">
+        <color rgba="1 0.6 0.3 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0.0 0 0"/>
+      <geometry>
+        <mesh filename="package://kinect_description/meshes/kinect_bed.stl" scale="1 1 1"/>
+      </geometry>
+    </collision>
+  </link>
+  <link name="camera_rgb_optical_frame"/>
+  <link name="camera_rgb_optical_frame_aux"/>
+
+  <!-- JOINTS -->
+
+  <joint name="${prefix}kinect_joint" type="fixed">
+         <parent link="${parent}"/>
+         <child link="${prefix}link"/>
+  </joint>
+  
+  <joint name="${prefix}camera_rgb_optical_joint_aux" type="fixed">
+    <origin rpy="-0.31 0 0" xyz="0.019 -0.06166 0.10297"/>
+    <parent link="${parent}"/>
+    <child link="camera_rgb_optical_frame_aux"/>
+  </joint>
+
+  <joint name="${prefix}camera_rgb_optical_joint" type="fixed">
+    <origin rpy="0.02 -0.015 3.16" xyz="-0.023 -0.01 -0.007"/>
+        <!--origin rpy="0 -0.015 3.19" xyz="-0.031 0.011 -0.01"/-->
+    <parent link="camera_rgb_optical_frame_aux"/>
+    <child link="camera_rgb_optical_frame"/>
+  </joint>  
+	</xacro:macro>
+</robot>
+

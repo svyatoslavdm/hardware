@@ -1,0 +1,9 @@
+force_torque_sensor_controller:
+  type: force_torque_sensor_controller/ForceTorqueSensorController
+  publish_rate: 350
+force_torque_sensor_controller_245:
+  type: force_torque_sensor_controller/ForceTorqueSensorController
+  publish_rate: 350
+force_torque_sensor_controller_249:
+  type: force_torque_sensor_controller/ForceTorqueSensorController
+  publish_rate: 350

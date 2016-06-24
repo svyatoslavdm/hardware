@@ -1,0 +1,171 @@
+<?xml version="1.0" ?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <xacro:macro name="wsg_50" params="prefix parent *origin wsg50_finger">
+		
+    <joint name="${prefix}base_joint" type="fixed">
+	    <parent link="${parent}"/>
+	    <child link="${prefix}palm_link"/>
+	    <insert_block name="origin" />
+    </joint>
+
+  <!-- link list -->
+
+  <!-- PALM LINK -->
+  <link name="${prefix}palm_link">
+    <inertial>
+      <mass value="1.2"/>
+      <origin xyz="0 0 0"/>
+      <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0.0 0 0"/>
+      <geometry>
+        <mesh filename="package://schunk_wsg50_description/meshes/palm.stl" scale="1 1 1"/>
+      </geometry>
+      <material name="yellow">
+        <color rgba="0.8 0.7 0.5 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0.0 0 0"/>
+      <geometry>
+        <mesh filename="package://schunk_wsg50_description/meshes/palm_collision.stl" scale="1 1 1"/>
+      </geometry>
+    </collision>
+  </link>
+  <!-- GRIPPER LEFT -->
+  <link name="${prefix}gripper_left">
+    <inertial>
+      <mass value="0.1"/>
+      <origin xyz="0 0 0"/>
+      <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0.0 0 0"/>
+      <geometry>
+        <mesh filename="package://schunk_wsg50_description/meshes/gripper.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="grey">
+        <color rgba="0.3 0.3 0.3 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://schunk_wsg50_description/meshes/gripper.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+  <!-- FINGER LEFT -->
+  <link name="${prefix}finger_left">
+    <inertial>
+      <mass value="0.1"/>
+      <origin xyz="0 0 0"/>
+      <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0.0 0 0"/>
+      <geometry>
+        <mesh filename="package://schunk_wsg50_description/meshes/wsg50_${wsg50_finger}.stl" scale="1 1 1"/>
+      </geometry>
+      <material name="blue">
+        <color rgba="0.2 0.2 0.9 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://schunk_wsg50_description/meshes/wsg50_${wsg50_finger}.stl" scale="1 1 1"/>
+      </geometry>
+    </collision>
+  </link>
+  <!-- GRIPPER RIGHT -->
+  <link name="${prefix}gripper_right">      
+    <inertial>
+      <mass value="0.1"/>
+      <origin xyz="0 0 0"/>
+      <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+    </inertial>      
+    <visual>
+      <origin rpy="0 0 0" xyz="0.0 0 0"/>
+      <geometry>
+        <mesh filename="package://schunk_wsg50_description/meshes/gripper.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+      <material name="grey">
+        <color rgba="0.3 0.3 0.3 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://schunk_wsg50_description/meshes/gripper.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>
+  <!-- FINGER RIGHT -->
+  <link name="${prefix}finger_right">
+    <inertial>
+      <mass value="0.1"/>
+      <origin xyz="0 0 0"/>
+      <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0.0 0 0"/>
+      <geometry>
+        <mesh filename="package://schunk_wsg50_description/meshes/wsg50_${wsg50_finger}.stl" scale="1 1 1"/>
+      </geometry>
+      <material name="blue">
+        <color rgba="0.2 0.2 0.9 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://schunk_wsg50_description/meshes/wsg50_${wsg50_finger}.stl" scale="1 1 1"/>
+      </geometry>
+    </collision>
+  </link>
+  
+  <!-- JOINTS -->
+  <joint name="${prefix}palm_joint_gripper_left" type="prismatic">
+    <limit effort="1.0" lower="-0.055" upper="-0.0027" velocity="1.0"/>
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <parent link="${prefix}palm_link"/>
+    <child link="${prefix}gripper_left"/>
+    <dynamics damping="100" friction="100"/>
+    <axis xyz="1 0 0"/>
+    <limit effort="100" velocity="100"/>
+  </joint>
+  
+  <joint name="${prefix}gripper_joint_finger_left" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 0.023"/>
+    <parent link="${prefix}gripper_left"/>
+    <child link="${prefix}finger_left"/>
+    <dynamics damping="100" friction="100"/>
+    <axis xyz="1 0 0"/>
+    <limit effort="100" velocity="100"/>
+  </joint>
+  
+  <joint name="${prefix}palm_joint_gripper_right" type="prismatic">
+    <limit effort="1.0" lower="0.0027" upper="0.055" velocity="1.0"/>
+    <origin rpy="0 0 3.14159" xyz="0 0 0"/>
+    <parent link="${prefix}palm_link"/>
+    <child link="${prefix}gripper_right"/>
+    <axis xyz="-1 0 0"/>
+    <dynamics damping="100" friction="100"/>
+    <limit effort="100" velocity="100"/>
+  </joint>
+  
+  <joint name="${prefix}gripper_joint_finger_right" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 0.023"/>
+    <parent link="${prefix}gripper_right"/>
+    <child link="${prefix}finger_right"/>
+    <dynamics damping="100" friction="100"/>
+    <axis xyz="1 0 0"/>
+    <limit effort="100" velocity="100"/>
+  </joint>
+  
+	</xacro:macro>
+</robot>
+

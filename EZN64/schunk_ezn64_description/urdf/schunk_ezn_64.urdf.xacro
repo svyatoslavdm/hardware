@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<root xmlns:xacro="http://www.ros.org/wiki/xacro">
+  
+  <xacro:include filename="$(find schunk_ezn64_description)/urdf/schunk_ezn_64.gazebo.xacro" />
+
+  <xacro:macro name="schunk_ezn_64" params="name parent *origin">
+  	
+    <joint name="${name}_joint" type="fixed">
+      <insert_block name="origin" />
+      <parent link="${parent}"/>
+      <child link="${name}_link"/>
+    </joint>
+
+    <link name="${name}_link">
+  	  <xacro:cylinder_inertial mass="3.0" length="0.213" radius="0.04" />
+      <visual>
+        <origin xyz="0 0 0.1065" rpy="0 0 0" />
+        <geometry>
+          <cylinder length="0.213" radius="0.04"/>
+        </geometry>
+        <material name="schunk_ezn_64_material">
+    		<color rgba="0.1 0.1 0.3 1.0"/>        	
+        </material>
+      </visual>
+      <collision>
+        <origin xyz="0 0 0.1065" rpy="0 0 0" />
+        <geometry>
+           <cylinder length="0.25" radius="0.04"/>
+        </geometry>
+      </collision>
+    </link>
+    
+    <joint name="${name}_frame_joint" type="fixed">
+      <origin xyz="0 0 0.213" rpy="0 0 0" />
+      <parent link="${name}_link"/>
+      <child link="${name}_tool"/>
+    </joint>
+
+    <link name="${name}_tool"/>
+    
+    <joint name="${name}_tool_joint" type="fixed">
+      <parent link="${name}_tool"/>
+      <child link="${name}_frame"/>
+    </joint>
+
+    <link name="${name}_frame"/>
+    	
+    <!-- extensions -->
+    <xacro:schunk_ezn_64_gazebo name="${name}" />
+  </xacro:macro>
+
+</root>
+

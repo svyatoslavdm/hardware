@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<package>
+  <name>kuka_hardware</name>
+  <version>0.9.0</version>
+  <description>kuka_hardware</description>
+
+  <maintainer email="kalevatykhia@gmail.com">Igor Kalevatykh</maintainer>
+  <author email="kalevatykhia@gmail.com">Igor Kalevatykh</author>
+ 
+  <license>BSD</license>
+<!--
+  <url type="website">https://github.com/kuka/kuka_hardware/wiki</url>
+  <url type="bugtracker">https://github.com/kuka/kuka_hardware/issues</url>
+  <url type="repository">https://github.com/kuka/kuka_hardware</url>
+-->
+  
+  <buildtool_depend>catkin</buildtool_depend>  
+  
+  <build_depend>cmake_modules</build_depend> kuka_kinematics
+  <build_depend>composite_hardware_interface</build_depend>  
+  <build_depend>kuka_kinematics</build_depend>   
+  <run_depend>composite_hardware_interface</run_depend>   
+  <run_depend>kuka_kinematics</run_depend>
+  <export>
+    <composite_hardware_interface plugin="${prefix}/plugin.xml"/>    	
+  </export>
+</package>

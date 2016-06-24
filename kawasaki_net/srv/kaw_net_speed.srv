@@ -1,0 +1,5 @@
+float32 speed
+string suffix
+bool always
+---
+int8 Result

@@ -1,0 +1,7 @@
+<library path="libati_netft_hardware">
+	
+	<class name="ati_netft_hardware/NetFT" type="ati_netft_hardware::NetFT" base_class_type="composite_hardware_interface::DeviceHW">
+		<description>Controller for ATI force torque sensor.</description>
+	</class>
+	
+</library>

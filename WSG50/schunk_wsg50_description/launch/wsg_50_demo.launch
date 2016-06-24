@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<launch>
+  <param name="robot_description" textfile="$(find schunk_wsg50_description)/urdf/schunk_wsg_50.urdf" />
+  <param name="use_gui" value="True"/>
+<!--  <param name="robot_description" textfile="$(find wsg_50_simulation)/urdf/wsg_50.urdf" />-->
+  <node name="joint_state_publisher" pkg="joint_state_publisher" type="joint_state_publisher"/>
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="state_publisher" />
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find urdf_tutorial)/urdf.rviz" required="true"/>
+
+</launch>
+

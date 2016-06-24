@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<package>
+  <name>kawasaki_hardware</name>
+  <version>0.5.0</version>
+  <description>kawasaki_hardware</description>
+
+  <maintainer email="kalevatykhia@gmail.com">Igor Kalevatykh</maintainer>
+  <author email="kalevatykhia@gmail.com">Igor Kalevatykh</author>
+ 
+  <license>BSD</license>
+<!--
+  <url type="website">https://github.com/kawasaki/kawasaki_hardware/wiki</url>
+  <url type="bugtracker">https://github.com/kawasaki/kawasaki_hardware/issues</url>
+  <url type="repository">https://github.com/kawasaki/kawasaki_hardware</url>
+-->
+
+  <author>Igor Kalevatykh</author>
+  
+  <buildtool_depend>catkin</buildtool_depend>  
+  
+  <build_depend>cmake_modules</build_depend> 
+  <build_depend>urdf</build_depend>
+  <build_depend>kawasaki_kinematics</build_depend>  
+  <build_depend>hardware_interface</build_depend> 
+  <build_depend>composite_hardware_interface</build_depend>   
+  <build_depend>emergency_hardware_interface</build_depend>
+  <build_depend>kdl_parser</build_depend>
+  <build_depend>std_msgs</build_depend>
+  
+  <run_depend>urdf</run_depend>
+  <run_depend>kawasaki_kinematics</run_depend>  
+  <run_depend>hardware_interface</run_depend> 
+  <run_depend>composite_hardware_interface</run_depend>   
+  <run_depend>emergency_hardware_interface</run_depend>
+  <run_depend>kdl_parser</run_depend>
+  <run_depend>std_msgs</run_depend>
+
+  <export>
+    <composite_hardware_interface plugin="${prefix}/plugin.xml"/>    	
+  </export>
+</package>

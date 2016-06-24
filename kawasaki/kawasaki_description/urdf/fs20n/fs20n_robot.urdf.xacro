@@ -1,0 +1,12 @@
+<?xml version="1.0" ?>
+
+<robot name="FS20N"
+	xmlns:xacro="http://ros.org/wiki/xacro">
+	<xacro:include filename="$(find kawasaki_description)/urdf/fs20n/fs20n.urdf.xacro" />
+	
+	<link name="world"/>
+	
+	<xacro:kawasaki_fs20n prefix="" parent="world">
+		<origin xyz="0 0 0" rpy="0 0 0" />
+	</xacro:kawasaki_fs20n>
+</robot>

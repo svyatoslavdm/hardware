@@ -1,0 +1,422 @@
+<?xml version="1.0" ?>
+<!--This does not replace URDF, and is not an extension of URDF.
+    This is a format for representing semantic information about the robot structure.
+    A URDF file must exist for this robot as well, where the joints and the links that are referenced are defined
+-->
+<robot name="bimanous">
+    <!--GROUPS: Representation of a set of joints and links. This can be useful for specifying DOF to plan for, defining arms, end effectors, etc-->
+    <!--LINKS: When a link is specified, the parent joint of that link (if it exists) is automatically included-->
+    <!--JOINTS: When a joint is specified, the child link of that joint (which will always exist) is automatically included-->
+    <!--CHAINS: When a chain is specified, all the links along the chain (including endpoints) are included in the group. Additionally, all the joints that are parents to included links are also included. This means that joints along the chain and the parent joint of the base link are included in the group-->
+    <!--SUBGROUPS: Groups can also be formed by referencing to already defined group names-->
+    <group name="left_arm">
+        <chain base_link="l/base_link" tip_link="l/link_6" />        
+    </group>
+    <group name="right_arm">
+        <chain base_link="r/base_link" tip_link="r/link_6" />        
+    </group>
+    <group name="both_arms">
+        <group name="right_arm" />
+        <group name="left_arm" />
+    </group> 
+    <group name="left_tool">
+        <link name="l/tool" />
+    </group>    
+    <group name="right_tool">
+        <link name="r/tool" />
+        <link name="wsg_50/base_link"/>
+        <link name="wsg_50/palm_link" />
+        <link name="wsg_50/gripper_left" />
+        <link name="wsg_50/finger_left" />
+        <link name="wsg_50/gripper_right" />
+        <link name="wsg_50/finger_right" />
+    </group> 
+    
+    <!--GROUP STATES: Purpose: Define a named state for a particular group. in terms of joint values. This is useful to define states like 'folded arms'-->
+    <group_state name="home" group="left_arm">
+        <joint name="l/JT1" value="0" />
+        <joint name="l/JT2" value="0" />
+        <joint name="l/JT3" value="0" />
+        <joint name="l/JT4" value="0" />
+        <joint name="l/JT5" value="0" />
+        <joint name="l/JT6" value="0" />
+    </group_state>
+    <group_state name="forward" group="left_arm">
+        <joint name="l/JT1" value="0" />
+        <joint name="l/JT2" value="0.1" />
+        <joint name="l/JT3" value="-2.4" />
+        <joint name="l/JT4" value="0" />
+        <joint name="l/JT5" value="0.9" />
+        <joint name="l/JT6" value="0" />
+    </group_state>
+    <group_state name="right_arm" group="left_arm">
+        <joint name="l/JT1" value="0" />
+        <joint name="l/JT2" value="0.1" />
+        <joint name="l/JT3" value="-2.4" />
+        <joint name="l/JT4" value="-1.57" />
+        <joint name="l/JT5" value="1.57" />
+        <joint name="l/JT6" value="0" />
+    </group_state>
+    <group_state name="left_arm" group="left_arm">
+        <joint name="l/JT1" value="0" />
+        <joint name="l/JT2" value="0.1" />
+        <joint name="l/JT3" value="-2.4" />
+        <joint name="l/JT4" value="-1.57" />
+        <joint name="l/JT5" value="-1.57" />
+        <joint name="l/JT6" value="0" />
+    </group_state>    
+	<group_state name="home" group="right_arm">
+        <joint name="r/JT1" value="0" />
+        <joint name="r/JT2" value="0" />
+        <joint name="r/JT3" value="0" />
+        <joint name="r/JT4" value="0" />
+        <joint name="r/JT5" value="0" />
+        <joint name="r/JT6" value="0" />
+    </group_state>
+    <group_state name="forward" group="right_arm">
+        <joint name="r/JT1" value="0" />
+        <joint name="r/JT2" value="0.1" />
+        <joint name="r/JT3" value="-2.4" />
+        <joint name="r/JT4" value="0" />
+        <joint name="r/JT5" value="0.9" />
+        <joint name="r/JT6" value="0" />
+    </group_state>
+    <group_state name="right_arm" group="right_arm">
+        <joint name="r/JT1" value="0" />
+        <joint name="r/JT2" value="0.1" />
+        <joint name="r/JT3" value="-2.4" />
+        <joint name="r/JT4" value="-1.57" />
+        <joint name="r/JT5" value="1.57" />
+        <joint name="r/JT6" value="0" />
+    </group_state>
+    <group_state name="left_arm" group="right_arm">
+        <joint name="r/JT1" value="0" />
+        <joint name="r/JT2" value="0.1" />
+        <joint name="r/JT3" value="-2.4" />
+        <joint name="r/JT4" value="-1.57" />
+        <joint name="r/JT5" value="-1.57" />
+        <joint name="r/JT6" value="0" />
+    </group_state> 
+
+    <group_state name="scan" group="right_arm">
+        <joint name="r/JT1" value="0.056" />
+        <joint name="r/JT2" value="0.439" />
+        <joint name="r/JT3" value="-2.063" />
+        <joint name="r/JT4" value="1.133" />
+        <joint name="r/JT5" value="-1.119" />
+        <joint name="r/JT6" value="-0.149" />
+    </group_state>
+    <group_state name="detect" group="right_arm">
+        <joint name="r/JT1" value="1.472" />
+        <joint name="r/JT2" value="0.448" />
+        <joint name="r/JT3" value="-2.299" />
+        <joint name="r/JT4" value="-2.361" />
+        <joint name="r/JT5" value="1.132" />
+        <joint name="r/JT6" value="-3.173" />
+    </group_state>
+       
+    <group_state name="home" group="both_arms">
+        <joint name="l/JT6" value="0" />
+        <joint name="l/JT1" value="0" />
+        <joint name="l/JT2" value="0" />
+        <joint name="l/JT3" value="0" />
+        <joint name="l/JT4" value="0" />
+        <joint name="l/JT5" value="0" />
+        <joint name="r/JT1" value="0" />
+        <joint name="r/JT2" value="0" />
+        <joint name="r/JT3" value="0" />
+        <joint name="r/JT4" value="0" />
+        <joint name="r/JT5" value="0" />
+        <joint name="r/JT6" value="0" />
+    </group_state>
+    <group_state name="grasp" group="both_arms">
+        <joint name="l/JT1" value="0" />
+        <joint name="l/JT2" value="0.1" />
+        <joint name="l/JT3" value="-2.4" />
+        <joint name="l/JT4" value="-1.57" />
+        <joint name="l/JT5" value="1.57" />
+        <joint name="l/JT6" value="0" />
+        <joint name="r/JT1" value="0" />
+        <joint name="r/JT2" value="0.1" />
+        <joint name="r/JT3" value="-2.4" />
+        <joint name="r/JT4" value="-1.57" />
+        <joint name="r/JT5" value="-1.57" />
+        <joint name="r/JT6" value="0" />
+    </group_state>
+    <group_state name="forward" group="both_arms">
+        <joint name="l/JT1" value="0" />
+        <joint name="l/JT2" value="0.1" />
+        <joint name="l/JT3" value="-2.4" />
+        <joint name="l/JT4" value="0" />
+        <joint name="l/JT5" value="0.9" />
+        <joint name="l/JT6" value="0" />
+        <joint name="r/JT1" value="0" />
+        <joint name="r/JT2" value="0.1" />
+        <joint name="r/JT3" value="-2.4" />
+        <joint name="r/JT4" value="0" />
+        <joint name="r/JT5" value="0.9" />
+        <joint name="r/JT6" value="0" />
+    </group_state>
+    <group_state name="down_" group="both_arms">
+        <joint name="l/JT1" value="0" />
+        <joint name="l/JT2" value="0.349" />
+        <joint name="l/JT3" value="-2.094" />
+        <joint name="l/JT4" value="0" />
+        <joint name="l/JT5" value="-0.698" />
+        <joint name="l/JT6" value="0" />
+        <joint name="r/JT1" value="0" />
+        <joint name="r/JT2" value="0.349" />
+        <joint name="r/JT3" value="-2.094" />
+        <joint name="r/JT4" value="0" />
+        <joint name="r/JT5" value="-0.698" />
+        <joint name="r/JT6" value="0" />
+    </group_state>
+
+    <group_state name="scan" group="both_arms">
+        <joint name="l/JT1" value="0" />
+        <joint name="l/JT2" value="0" />
+        <joint name="l/JT3" value="0" />
+        <joint name="l/JT4" value="0" />
+        <joint name="l/JT5" value="0" />
+        <joint name="l/JT6" value="0" />
+        <joint name="r/JT1" value="0.056" />
+        <joint name="r/JT2" value="0.439" />
+        <joint name="r/JT3" value="-2.063" />
+        <joint name="r/JT4" value="1.133" />
+        <joint name="r/JT5" value="-1.119" />
+        <joint name="r/JT6" value="-0.149" />
+    </group_state>
+    <group_state name="detect" group="both_arms">
+        <joint name="l/JT1" value="0" />
+        <joint name="l/JT2" value="0" />
+        <joint name="l/JT3" value="0" />
+        <joint name="l/JT4" value="0" />
+        <joint name="l/JT5" value="0" />
+        <joint name="l/JT6" value="0" />
+        <joint name="r/JT1" value="1.472" />
+        <joint name="r/JT2" value="0.448" />
+        <joint name="r/JT3" value="-2.299" />
+        <joint name="r/JT4" value="-2.361" />
+        <joint name="r/JT5" value="1.132" />
+        <joint name="r/JT6" value="-3.173" />
+    </group_state>
+<!--        CALIBRATION POINTS             -->
+    <!--group_state name="calibration_1" group="both_arms">
+        <joint name="l/JT1" value="-0.0339228" />
+        <joint name="l/JT2" value="-0.031759" />
+        <joint name="l/JT3" value="-2.5042495" />
+        <joint name="l/JT4" value="1.59679715" />
+        <joint name="l/JT5" value="-1.54940295" />
+        <joint name="l/JT6" value="-0.90242675" />
+        <joint name="r/JT1" value="1.15607995" />
+        <joint name="r/JT2" value="0.93662875" />
+        <joint name="r/JT3" value="-1.0129376" />
+        <joint name="r/JT4" value="-2.27001815" />
+        <joint name="r/JT5" value="-0.55405495" />
+        <joint name="r/JT6" value="1.62419365" />
+    </group_state> 
+
+    <group_state name="calibration_2" group="both_arms">
+        <joint name="l/JT1" value="-1.0393569" />
+        <joint name="l/JT2" value="0.58836165" />
+        <joint name="l/JT3" value="-1.64129465" />
+        <joint name="l/JT4" value="2.37621885" />
+        <joint name="l/JT5" value="-0.82076075" />
+        <joint name="l/JT6" value="-0.99156135" />
+        <joint name="r/JT1" value="0.5256289" />
+        <joint name="r/JT2" value="0.08492915" />
+        <joint name="r/JT3" value="-2.41809885" />
+        <joint name="r/JT4" value="-2.0066802" />
+        <joint name="r/JT5" value="-1.2670096" />
+        <joint name="r/JT6" value="1.84441265" />
+    </group_state> 
+
+    <group_state name="calibration_3" group="both_arms">
+        <joint name="l/JT1" value="-1.0387287" />
+        <joint name="l/JT2" value="0.71312915" />
+        <joint name="l/JT3" value="-0.1955098" />
+        <joint name="l/JT4" value="0.7634724" />
+        <joint name="l/JT5" value="-0.82337825" />
+        <joint name="l/JT6" value="0.9934634" />
+        <joint name="r/JT1" value="0.52564635" />
+        <joint name="r/JT2" value="-0.14042015" />
+        <joint name="r/JT3" value="-1.3889502" />
+        <joint name="r/JT4" value="-1.3889851" />
+        <joint name="r/JT5" value="-1.07430925" />
+        <joint name="r/JT6" value="0.47598365" />
+    </group_state> 
+
+    <group_state name="calibration_4" group="both_arms">
+        <joint name="l/JT1" value="-1.0396361" />
+        <joint name="l/JT2" value="1.04740135" />
+        <joint name="l/JT3" value="-1.67821885" />
+        <joint name="l/JT4" value="2.57019305" />
+        <joint name="l/JT5" value="-1.2149039" />
+        <joint name="l/JT6" value="-1.35085685" />
+        <joint name="r/JT1" value="0.5256638" />
+        <joint name="r/JT2" value="0.95355525" />
+        <joint name="r/JT3" value="-2.44371545" />
+        <joint name="r/JT4" value="-2.0820642" />
+        <joint name="r/JT5" value="-1.69818165" />
+        <joint name="r/JT6" value="2.6374628" />
+    </group_state> 
+
+    <group_state name="calibration_5" group="both_arms">
+        <joint name="l/JT1" value="-0.0288972" />
+        <joint name="l/JT2" value="0.9584587" />
+        <joint name="l/JT3" value="-2.5603338" />
+        <joint name="l/JT4" value="1.5972683" />
+        <joint name="l/JT5" value="-1.5809351" />
+        <joint name="l/JT6" value="-1.9483274" />
+        <joint name="r/JT1" value="1.1560625" />
+        <joint name="r/JT2" value="1.30126395" />
+        <joint name="r/JT3" value="-1.0356575" />
+        <joint name="r/JT4" value="-2.57605625" />
+        <joint name="r/JT5" value="-0.85067005" />
+        <joint name="r/JT6" value="2.0186509" />
+    </group_state> 
+
+    <group_state name="calibration_6" group="both_arms">
+        <joint name="l/JT1" value="-0.7114016" />
+        <joint name="l/JT2" value="0.9152525" />
+        <joint name="l/JT3" value="-2.30006705" />
+        <joint name="l/JT4" value="2.280366" />
+        <joint name="l/JT5" value="-1.61881905" />
+        <joint name="l/JT6" value="-1.58105725" />
+        <joint name="r/JT1" value="0.95920905" />
+        <joint name="r/JT2" value="0.98740825" />
+        <joint name="r/JT3" value="-1.9333902" />
+        <joint name="r/JT4" value="-2.51840145" />
+        <joint name="r/JT5" value="-1.390765" />
+        <joint name="r/JT6" value="2.28683995" />
+    </group_state> 
+
+    <group_state name="calibration_7" group="both_arms">
+        <joint name="l/JT1" value="-0.44178165" />
+        <joint name="l/JT2" value="1.0713951" />
+        <joint name="l/JT3" value="-1.60939605" />
+        <joint name="l/JT4" value="1.97102985" />
+        <joint name="l/JT5" value="-1.3793178" />
+        <joint name="l/JT6" value="-1.1033984" />
+        <joint name="r/JT1" value="0.6577254" />
+        <joint name="r/JT2" value="1.2086219" />
+        <joint name="r/JT3" value="-1.2653344" />
+        <joint name="r/JT4" value="-2.11603935" />
+        <joint name="r/JT5" value="-1.18253415" />
+        <joint name="r/JT6" value="1.85729075" />
+    </group_state> 
+         
+     <group_state name="calibration_8" group="both_arms">
+        <joint name="l/JT1" value="-0.4431602" />
+        <joint name="l/JT2" value="0.6279906" />
+        <joint name="l/JT3" value="-1.57383295" />
+        <joint name="l/JT4" value="1.843418" />
+        <joint name="l/JT5" value="-1.21708515" />
+        <joint name="l/JT6" value="-0.6345518" />
+        <joint name="r/JT1" value="0.65770795" />
+        <joint name="r/JT2" value="0.81622375" />
+        <joint name="r/JT3" value="-1.24542395" />
+        <joint name="r/JT4" value="-1.9200933" />
+        <joint name="r/JT5" value="-1.00115885" />
+        <joint name="r/JT6" value="1.43859545" />
+    </group_state--> 
+
+    <!--group_state name="calibration_7" group="both_arms">
+        <joint name="l/JT1" value="" />
+        <joint name="l/JT2" value="" />
+        <joint name="l/JT3" value="" />
+        <joint name="l/JT4" value="" />
+        <joint name="l/JT5" value="" />
+        <joint name="l/JT6" value="" />
+        <joint name="r/JT1" value="" />
+        <joint name="r/JT2" value="" />
+        <joint name="r/JT3" value="" />
+        <joint name="r/JT4" value="" />
+        <joint name="r/JT5" value="" />
+        <joint name="r/JT6" value="" />
+    </group_state--> 
+
+    <!--group_state name="calibration_7" group="both_arms">
+        <joint name="l/JT1" value="" />
+        <joint name="l/JT2" value="" />
+        <joint name="l/JT3" value="" />
+        <joint name="l/JT4" value="" />
+        <joint name="l/JT5" value="" />
+        <joint name="l/JT6" value="" />
+        <joint name="r/JT1" value="" />
+        <joint name="r/JT2" value="" />
+        <joint name="r/JT3" value="" />
+        <joint name="r/JT4" value="" />
+        <joint name="r/JT5" value="" />
+        <joint name="r/JT6" value="" />
+    </group_state-->     
+
+    <!--END EFFECTOR: Purpose: Represent information about an end effector.-->
+    <end_effector name="right_hand_ee" parent_link="r/link_6" group="right_tool" parent_group="right_arm" />
+    <end_effector name="left_hand_ee" parent_link="l/link_6" group="left_tool" parent_group="left_arm" />
+        
+    <!--VIRTUAL JOINT: Purpose: this element defines a virtual joint between a robot link and an external frame of reference (considered fixed with respect to the robot)-->
+    <virtual_joint name="w2base" type="fixed" parent_frame="world" child_link="world" />
+    
+    <!--PASSIVE JOINT: Purpose: this element is used to mark joints that are not actuated-->
+
+    <!--DISABLE COLLISIONS: By default it is assumed that any link of the robot could potentially come into collision with any other link in the robot. This tag disables collision checking between a specified pair of links. -->
+    <disable_collisions link1="l/base_link" link2="l/link_1" reason="Adjacent" />    
+    <disable_collisions link1="l/base_link" link2="l/link_2" reason="Never" />
+    <disable_collisions link1="l/base_link" link2="l/link_3" reason="Never" />
+    <disable_collisions link1="l/base_link" link2="r/base_link" reason="Adjacent" />
+    <disable_collisions link1="l/base_link" link2="r/link_1" reason="Never" />
+    <disable_collisions link1="l/base_link" link2="r/link_2" reason="Never" />
+    <disable_collisions link1="l/base_link" link2="r/link_3" reason="Never" />
+    <disable_collisions link1="l/base_link" link2="support_link" reason="Adjacent" />
+    <disable_collisions link1="l/link_1" link2="l/link_2" reason="Adjacent" />
+    <disable_collisions link1="l/link_1" link2="l/link_3" reason="Never" />
+    <disable_collisions link1="l/link_1" link2="l/link_5" reason="Never" />
+    <disable_collisions link1="l/link_1" link2="l/link_6" reason="Never" />
+    <disable_collisions link1="l/link_1" link2="r/base_link" reason="Never" />
+    <disable_collisions link1="l/link_1" link2="r/link_1" reason="Never" />
+    <disable_collisions link1="l/link_1" link2="r/link_2" reason="Never" />
+    <disable_collisions link1="l/link_1" link2="r/link_3" reason="Never" />
+    <disable_collisions link1="l/link_1" link2="support_link" reason="Never" />
+    <disable_collisions link1="l/link_2" link2="l/link_3" reason="Adjacent" />
+    <disable_collisions link1="l/link_2" link2="l/link_4" reason="Never" />    
+    <disable_collisions link1="l/link_2" link2="l/link_5" reason="Never" />
+    <disable_collisions link1="l/link_2" link2="l/link_6" reason="Never" />
+    <disable_collisions link1="l/link_2" link2="r/base_link" reason="Never" />
+    <disable_collisions link1="l/link_2" link2="r/link_1" reason="Never" />
+    <disable_collisions link1="l/link_2" link2="support_link" reason="Never" />
+    <disable_collisions link1="l/link_3" link2="l/link_4" reason="Adjacent" />
+    <disable_collisions link1="l/link_3" link2="l/link_5" reason="Never" />
+    <disable_collisions link1="l/link_3" link2="l/link_6" reason="Never" />
+    <disable_collisions link1="l/link_3" link2="r/base_link" reason="Never" />
+    <disable_collisions link1="l/link_3" link2="r/link_1" reason="Never" />
+    <disable_collisions link1="l/link_3" link2="support_link" reason="Never" />
+    <disable_collisions link1="l/link_4" link2="l/link_5" reason="Adjacent" />
+    <disable_collisions link1="l/link_4" link2="l/link_6" reason="Never" />
+    <disable_collisions link1="l/link_5" link2="l/link_6" reason="Adjacent" />
+    <disable_collisions link1="l/link_6" link2="r/link_6" reason="Never" />
+    <disable_collisions link1="r/base_link" link2="r/link_1" reason="Adjacent" />
+    <disable_collisions link1="r/base_link" link2="r/link_2" reason="Never" />    
+    <disable_collisions link1="r/base_link" link2="r/link_3" reason="Never" />
+    <disable_collisions link1="r/base_link" link2="support_link" reason="Adjacent" />
+    <disable_collisions link1="r/link_1" link2="r/link_2" reason="Adjacent" />
+    <disable_collisions link1="r/link_1" link2="r/link_3" reason="Never" />
+    <disable_collisions link1="r/link_1" link2="r/link_5" reason="Never" />
+    <disable_collisions link1="r/link_1" link2="r/link_6" reason="Never" />
+    <disable_collisions link1="r/link_1" link2="support_link" reason="Never" />
+    <disable_collisions link1="r/link_2" link2="r/link_3" reason="Adjacent" />
+    <disable_collisions link1="r/link_2" link2="r/link_4" reason="Never" />    
+    <disable_collisions link1="r/link_2" link2="r/link_5" reason="Never" />
+    <disable_collisions link1="r/link_2" link2="r/link_6" reason="Never" />
+    <disable_collisions link1="r/link_2" link2="support_link" reason="Never" />
+    <disable_collisions link1="r/link_3" link2="r/link_4" reason="Adjacent" />
+    <disable_collisions link1="r/link_3" link2="r/link_5" reason="Never" />
+    <disable_collisions link1="r/link_3" link2="r/link_6" reason="Never" />
+    <disable_collisions link1="r/link_3" link2="support_link" reason="Never" />
+    <disable_collisions link1="r/link_4" link2="r/link_5" reason="Adjacent" />
+    <disable_collisions link1="r/link_4" link2="r/link_6" reason="Never" />
+    <disable_collisions link1="r/link_5" link2="r/link_6" reason="Adjacent" />
+    <disable_collisions link1="wsg_50/base_link" link2="r/link_6" reason="Adjacent" />
+    <disable_collisions link1="wsg_50/base_link" link2="wsg_50/palm_link" reason="Adjacent" />
+
+</robot>

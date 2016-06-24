@@ -1,0 +1,17 @@
+<library path="libkuka_hardware">
+	
+	<class name="kuka_hardware/KukaHW" type="kuka_hardware::KukaHW" base_class_type="composite_hardware_interface::DeviceHW">
+		<description>
+			Controller for KUKA robotic arms. 
+			Communicate with robot RSI module thru Ethernet by UDP.
+			Config example:
+			  arm:
+			   type:    kuka_hardware/KukaHW
+			   address: 192.168.5.180				# server address, required
+			   port:    49152						# server port, default 49152
+			   virtual: false						# virtual robot for test purposes, default false 
+			   joints:  [A1, A2, A3, A4, A5, A6]	# robot joint names like in URDF, required 6 values	
+		</description>
+	</class>
+	
+</library>

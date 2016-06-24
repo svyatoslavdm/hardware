@@ -1,0 +1,4 @@
+float32 limit_minus
+float32 limit_plus
+---
+uint8 error

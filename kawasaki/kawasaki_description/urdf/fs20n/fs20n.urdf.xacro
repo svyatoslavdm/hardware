@@ -1,0 +1,220 @@
+<?xml version="1.0" ?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+	
+	<xacro:include filename="$(find kawasaki_description)/urdf/materials.urdf.xacro" />
+	<xacro:include filename="$(find kawasaki_description)/urdf/fs20n/fs20n.gazebo.xacro" />
+	<xacro:include filename="$(find kawasaki_description)/urdf/fs20n/fs20n.transmission.xacro" />
+	
+	<xacro:property name="deg2rad" value="0.01745329252" />
+	<xacro:property name="speed_limit" value="0.2" />
+	<!-- 20% of maximum speed -->
+	<xacro:property name="effort" value="100" />
+	
+	<xacro:macro name="kawasaki_fs20n" params="prefix parent *origin">
+		
+		<joint name="${prefix}base_joint" type="fixed">
+			<parent link="${parent}"/>
+			<child link="${prefix}base_link"/>
+			<insert_block name="origin" />
+		</joint>
+		
+		<!-- link list -->
+		<link name="${prefix}base_link">
+			<visual>
+				<geometry>
+					<mesh filename="package://kawasaki_description/meshes/fs20n/visual/base_link.stl"/>
+				</geometry>
+				<material name="Kawasaki/LightGrey" />
+			</visual>
+			<collision>
+				<geometry>
+					<mesh filename="package://kawasaki_description/meshes/fs20n/collision/base_link.stl"/>
+				</geometry>
+			</collision>
+			<inertial>
+				<mass value="0.01" />
+				<origin xyz="0 0 0" />
+				<inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001" />
+			</inertial>
+		</link>
+		<link name="${prefix}link_1">
+			<visual>
+				<geometry>
+					<mesh filename="package://kawasaki_description/meshes/fs20n/visual/link_1.stl"/>
+				</geometry>
+				<material name="Kawasaki/LightGrey"/>
+			</visual>
+			<collision>
+				<geometry>
+					<mesh filename="package://kawasaki_description/meshes/fs20n/collision/link_1.stl"/>
+				</geometry>
+			</collision>
+			<inertial>
+				<mass value="0.01" />
+				<origin xyz="0 0 0" />
+				<inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001" />
+			</inertial>
+		</link>
+		<link name="${prefix}link_2">
+			<visual>
+				<geometry>
+					<mesh filename="package://kawasaki_description/meshes/fs20n/visual/link_2.stl"/>
+				</geometry>
+				<material name="Kawasaki/LightGrey"/>
+			</visual>
+			<collision>
+				<geometry>
+					<mesh filename="package://kawasaki_description/meshes/fs20n/collision/link_2.stl"/>
+				</geometry>
+			</collision>
+			<inertial>
+				<mass value="0.01" />
+				<origin xyz="0 0 0" />
+				<inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001" />
+			</inertial>
+		</link>
+		<link name="${prefix}link_3">
+			<visual>
+				<geometry>
+					<mesh filename="package://kawasaki_description/meshes/fs20n/visual/link_3.stl"/>
+				</geometry>
+				<material name="Kawasaki/LightGrey"/>
+			</visual>
+			<collision>
+				<geometry>
+					<mesh filename="package://kawasaki_description/meshes/fs20n/collision/link_3.stl"/>
+				</geometry>
+			</collision>
+			<inertial>
+				<mass value="0.01" />
+				<origin xyz="0 0 0" />
+				<inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001" />
+			</inertial>
+		</link>
+		<link name="${prefix}link_4">
+			<visual>
+				<geometry>
+					<mesh filename="package://kawasaki_description/meshes/fs20n/visual/link_4.stl"/>
+				</geometry>
+				<origin xyz="0 0 0.0" />
+				<material name="Kawasaki/LightGrey"/>
+			</visual>
+			<collision>
+				<geometry>
+					<mesh filename="package://kawasaki_description/meshes/fs20n/collision/link_4.stl"/>
+				</geometry>
+				<origin xyz="0 0 0" />
+			</collision>
+			<inertial>
+				<mass value="0.01" />
+				<origin xyz="0 0 0" />
+				<inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001" />
+			</inertial>
+		</link>
+		<link name="${prefix}link_5">
+			<visual>
+				<geometry>
+					<mesh filename="package://kawasaki_description/meshes/fs20n/visual/link_5.stl"/>
+				</geometry>
+				<material name="Kawasaki/LightGrey"/>
+			</visual>
+			<collision>
+				<geometry>
+					<mesh filename="package://kawasaki_description/meshes/fs20n/collision/link_5.stl"/>
+				</geometry>
+			</collision>
+			<inertial>
+				<mass value="0.01" />
+				<origin xyz="0 0 0" />
+				<inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001" />
+			</inertial>
+		</link>
+		<link name="${prefix}link_6">
+			<visual>
+				<geometry>
+					<mesh filename="package://kawasaki_description/meshes/fs20n/visual/link_6.stl"/>
+				</geometry>
+				<material name="Kawasaki/LightGrey"/>
+			</visual>
+			<collision>
+				<geometry>
+					<mesh filename="package://kawasaki_description/meshes/fs20n/collision/link_6.stl"/>
+				</geometry>
+			</collision>
+			<inertial>
+				<mass value="0.01" />
+				<origin xyz="0 0 0" />
+				<inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.001" />
+			</inertial>
+		</link>
+		<link name="${prefix}tool">
+		</link>
+		<!-- end of link list -->
+		<!-- joint list -->
+		<joint name="${prefix}JT1" type="revolute">
+			<parent link="${prefix}base_link"/>
+			<child link="${prefix}link_1"/>
+			<origin xyz="0 0 0.57" rpy="0 0 0" />
+			<axis xyz="0 0 -1" />
+			<limit lower="${-160 * deg2rad}" upper="${160 * deg2rad}" velocity="${160*speed_limit * deg2rad}" effort="${effort}" />
+			<safety_controller soft_lower_limit="${-155 * deg2rad}" soft_upper_limit="${155 * deg2rad}" k_position="20" k_velocity="50" />
+			<dynamics damping="10.0" />
+		</joint>
+		<joint name="${prefix}JT2" type="revolute">
+			<parent link="${prefix}link_1"/>
+			<child link="${prefix}link_2"/>
+			<origin xyz="0 0.15 0" rpy="0 0 0" />
+			<axis xyz="-1 0 0" />
+			<limit lower="${-105 * deg2rad}" upper="${140 * deg2rad}" velocity="${140*speed_limit * deg2rad}" effort="${effort}" />
+			<safety_controller soft_lower_limit="${-100 * deg2rad}" soft_upper_limit="${135 * deg2rad}" k_position="20" k_velocity="50" />
+			<dynamics damping="10.0" />
+		</joint>
+		<joint name="${prefix}JT3" type="revolute">
+			<parent link="${prefix}link_2"/>
+			<child link="${prefix}link_3"/>
+			<origin xyz="0 0 0.8" rpy="0 0 0" />
+			<axis xyz="1 0 0" />
+			<limit lower="${-155 * deg2rad}" upper="${120 * deg2rad}" velocity="${160*speed_limit * deg2rad}" effort="${effort}" />
+			<safety_controller soft_lower_limit="${-150 * deg2rad}" soft_upper_limit="${115 * deg2rad}" k_position="20" k_velocity="50" />
+			<dynamics damping="10.0" />
+		</joint>
+		<joint name="${prefix}JT4" type="revolute">
+			<parent link="${prefix}link_3"/>
+			<child link="${prefix}link_4"/>
+			<origin xyz="0 -0.06 0" rpy="0 0 0" />
+			<axis xyz="0 0 1" />
+			<limit lower="${-270 * deg2rad}" upper="${89 * deg2rad}" velocity="${330*speed_limit * deg2rad}" effort="${effort}" />
+			<safety_controller soft_lower_limit="${-265 * deg2rad}" soft_upper_limit="${265 * deg2rad}" k_position="20" k_velocity="50" />
+			<dynamics damping="10.0" />
+		</joint>
+		<joint name="${prefix}JT5" type="revolute">
+			<parent link="${prefix}link_4"/>
+			<child link="${prefix}link_5"/>
+			<origin xyz="0 0 0.7" rpy="0 0 0" />
+			<axis xyz="1 0 0" />
+			<limit lower="${-145 * deg2rad}" upper="${145 * deg2rad}" velocity="${330*speed_limit * deg2rad}" effort="${effort}" />
+			<safety_controller soft_lower_limit="${-140 * deg2rad}" soft_upper_limit="${140 * deg2rad}" k_position="20" k_velocity="50" />
+			<dynamics damping="10.0" />
+		</joint>
+		<joint name="${prefix}JT6" type="revolute">
+			<parent link="${prefix}link_5"/>
+			<child link="${prefix}link_6"/>
+			<origin xyz="0 0 0.12" rpy="0 0 0" />
+			<axis xyz="0 0 1" />
+			<limit lower="${-179 * deg2rad}" upper="${180 * deg2rad}" velocity="${500*speed_limit * deg2rad}" effort="${effort}" />
+			<safety_controller soft_lower_limit="${-355 * deg2rad}" soft_upper_limit="${355 * deg2rad}" k_position="20" k_velocity="50" />
+			<dynamics damping="10.0" />
+		</joint>
+		<joint name="${prefix}jtool0" type="fixed">
+			<parent link="${prefix}link_6"/>
+			<child link="${prefix}tool"/>
+			<origin xyz="0 0 0" rpy="0 0 0" />
+		</joint>
+		<!-- end of joint list -->
+		
+		<!-- extensions -->
+		<xacro:kawasaki_fs20n_gazebo prefix="${prefix}" />
+		<xacro:kawasaki_fs20n_transmission prefix="${prefix}" />
+		
+	</xacro:macro>
+</robot>

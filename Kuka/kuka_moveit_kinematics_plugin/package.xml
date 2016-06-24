@@ -1,0 +1,26 @@
+<package>
+  <name>kuka_moveit_kinematics_plugin</name>
+  <version>1.0.0</version>
+  <description>Kuka-specific kinematics plugin for MoveIt.</description>
+
+  <author email="svyatoslavdm@gmail.com">Svyatoslav Moroshkin</author>
+  <maintainer email="svyatoslavdm@gmail.com">Svyatoslav Moroshkin</maintainer>
+
+  <license>BSD</license>
+
+  <buildtool_depend>catkin</buildtool_depend>
+
+  <build_depend>kuka_kinematics</build_depend>  
+  <build_depend>moveit_core</build_depend>
+  <build_depend>roscpp</build_depend>
+  <build_depend>urdf</build_depend>
+  <build_depend>rosconsole_bridge</build_depend>
+ 
+  <run_depend>moveit_core</run_depend>
+  <run_depend>roscpp</run_depend>
+  <run_depend>rosconsole_bridge</run_depend>  
+
+  <export>
+    <moveit_core plugin="${prefix}/kuka_moveit_kinematics_plugin_description.xml"/>    
+  </export>
+</package>

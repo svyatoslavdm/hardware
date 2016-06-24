@@ -1,0 +1,230 @@
+<?xml version="1.0" ?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+
+  <xacro:macro name="egn_160" params="prefix parent *origin egn160_finger">
+		
+    <joint name="${prefix}base_joint" type="fixed">
+	    <parent link="${parent}"/>
+	    <child link="${prefix}base_link"/>
+	    <insert_block name="origin" />
+    </joint>
+    
+  <!-- link list -->
+  
+  <!-- ADAPTER LINK -->
+<!--  <link name="${prefix}adapter_link">
+    <inertial>
+      <mass value="1.2"/>
+      <origin xyz="0 0 0"/>
+      <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0.0 0 0.0"/>
+      <geometry>
+        <mesh filename="package://schunk_egn160_description/meshes/adapter.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+     <material name="orange_color">
+        <color rgba="1 0.6 0.3 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0.0 0 0.0"/>
+      <geometry>
+        <mesh filename="package://schunk_egn160_description/meshes/adapter.stl" scale="0.001 0.001 0.001"/>
+      </geometry>
+    </collision>
+  </link>-->
+  
+  <!-- BASE LINK -->
+  <link name="${prefix}base_link">
+    <inertial>
+      <mass value="1.2"/>
+      <origin xyz="0 0 0"/>
+      <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0.0 0 0.0"/>
+      <geometry>
+        <mesh filename="package://schunk_egn160_description/meshes/base.stl" scale="1 1 1"/>
+      </geometry>
+     <material name="orange_color">
+        <color rgba="1 0.6 0.3 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0.0 0 0.0"/>
+      <geometry>
+        <mesh filename="package://schunk_egn160_description/meshes/base.stl" scale="1 1 1"/>
+      </geometry>
+    </collision>
+  </link>
+  
+  <!-- PALM LINK -->
+  <link name="${prefix}palm_link">
+    <inertial>
+      <mass value="1.2"/>
+      <origin xyz="0 0 0"/>
+      <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0.0 0 0"/>
+      <geometry>
+        <mesh filename="package://schunk_egn160_description/meshes/palm.stl" scale="1 1 1"/>
+      </geometry>
+     <material name="orange_color">
+        <color rgba="1 0.6 0.3 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0.0 0 0"/>
+      <geometry>
+        <mesh filename="package://schunk_egn160_description/meshes/palm.stl" scale="1 1 1"/>
+      </geometry>
+    </collision>
+  </link>
+  
+  <!-- GRIPPER LEFT -->
+  <link name="${prefix}gripper_left">
+    <inertial>
+      <mass value="0.1"/>
+      <origin xyz="0 0 0"/>
+      <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0.0 0 0"/>
+      <geometry>
+        <mesh filename="package://schunk_egn160_description/meshes/gripper.stl" scale="1 1 1"/>
+      </geometry>
+     <material name="orange_color">
+        <color rgba="1 0.6 0.3 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://schunk_egn160_description/meshes/gripper.stl" scale="1 1 1"/>
+      </geometry>
+    </collision>
+  </link>
+  
+  <!-- FINGER LEFT -->
+  <link name="${prefix}finger_left">
+    <inertial>
+      <mass value="0.1"/>
+      <origin xyz="0 0 0"/>
+      <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.037"/>
+      <geometry>
+        <mesh filename="package://schunk_egn160_description/meshes/egn160_${egn160_finger}.stl" scale="1 1 1"/>
+      </geometry>
+     <material name="orange_color">
+        <color rgba="1 0.6 0.3 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.037"/>
+      <geometry>
+        <mesh filename="package://schunk_egn160_description/meshes/collision/egn160_${egn160_finger}_collision.stl" scale="1 1 1"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- GRIPPER RIGHT -->
+  <link name="${prefix}gripper_right">      
+    <inertial>
+      <mass value="0.1"/>
+      <origin xyz="0 0 0"/>
+      <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+    </inertial>      
+    <visual>
+      <origin rpy="0 0 0" xyz="0.0 0 0"/>
+      <geometry>
+        <mesh filename="package://schunk_egn160_description/meshes/gripper.stl" scale="1 1 1"/>
+      </geometry>
+     <material name="orange_color">
+        <color rgba="1 0.6 0.3 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0 0 0"/>
+      <geometry>
+        <mesh filename="package://schunk_egn160_description/meshes/gripper.stl" scale="1 1 1"/>
+      </geometry>
+    </collision>
+  </link>
+  <!-- FINGER RIGHT -->
+  <link name="${prefix}finger_right">
+    <inertial>
+      <mass value="0.1"/>
+      <origin xyz="0 0 0"/>
+      <inertia ixx="1.0" ixy="0.0" ixz="0.0" iyy="1.0" iyz="0.0" izz="1.0"/>
+    </inertial>
+    <visual>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.037"/>
+      <geometry>
+        <mesh filename="package://schunk_egn160_description/meshes/egn160_${egn160_finger}.stl" scale="1 1 1"/>
+      </geometry>
+     <material name="orange_color">
+        <color rgba="1 0.6 0.3 1"/>
+      </material>
+    </visual>
+    <collision>
+      <origin rpy="0 0 0" xyz="0.0 0.0 0.037"/>
+      <geometry>
+        <mesh filename="package://schunk_egn160_description/meshes/collision/egn160_${egn160_finger}_collision.stl" scale="1 1 1"/>
+      </geometry>
+    </collision>
+  </link>
+
+  <!-- JOINTS -->
+<!--  <joint name="${prefix}adapter_joint_base" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 0.015"/>
+    <parent link="${prefix}adapter_link"/>
+    <child link="${prefix}base_link"/>
+  </joint>-->
+  <joint name="${prefix}base_joint_palm" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 0.21"/>
+    <parent link="${prefix}base_link"/>
+    <child link="${prefix}palm_link"/>
+  </joint>
+  <joint name="${prefix}palm_joint_gripper_left" type="prismatic">
+    <limit effort="1.0" lower="0" upper="0.016" velocity="1.0"/>
+    <origin rpy="0 0 3.14159" xyz="0 -0.0545 0.064"/>
+    <parent link="${prefix}palm_link"/>
+    <child link="${prefix}gripper_left"/>
+    <dynamics damping="100" friction="100"/>
+    <axis xyz="0 1 0"/>
+    <limit effort="100" velocity="100"/>
+    <mimic joint="${prefix}palm_joint_gripper_right" multiplier="1.0" offset="0.0"/>
+  </joint>
+  <joint name="${prefix}gripper_joint_finger_left" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <parent link="${prefix}gripper_left"/>
+    <child link="${prefix}finger_left"/>
+    <dynamics damping="100" friction="100"/>
+    <axis xyz="1 0 0"/>
+    <limit effort="100" velocity="100"/>
+  </joint>
+  <joint name="${prefix}palm_joint_gripper_right" type="prismatic">
+    <limit effort="1.0" lower="0" upper="0.016" velocity="1.0"/>
+    <origin rpy="0 0 0" xyz="0 0.0545 0.064"/>
+    <parent link="${prefix}palm_link"/>
+    <child link="${prefix}gripper_right"/>
+    <axis xyz="0 1 0"/>
+    <dynamics damping="100" friction="100"/>
+    <limit effort="100" velocity="100"/>
+  </joint>
+  <joint name="${prefix}gripper_joint_finger_right" type="fixed">
+    <origin rpy="0 0 0" xyz="0 0 0"/>
+    <parent link="${prefix}gripper_right"/>
+    <child link="${prefix}finger_right"/>
+    <dynamics damping="100" friction="100"/>
+    <axis xyz="1 0 0"/>
+    <limit effort="100" velocity="100"/>
+  </joint>
+  
+	</xacro:macro>
+</robot>
+

@@ -1,0 +1,5 @@
+float32 acdec
+bool always
+bool accel
+---
+int8 Result

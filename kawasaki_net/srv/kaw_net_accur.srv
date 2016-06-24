@@ -1,0 +1,4 @@
+float32 acc
+bool always
+---
+int8 Result

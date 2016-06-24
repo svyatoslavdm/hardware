@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<package>
+  <name>kawasaki_kinematics</name>
+  <version>1.0.0</version>
+  <description>The kawasaki_kinematics package</description>
+
+  <maintainer email="kalevatykhia@gmail.com">Igor Kalevatykh</maintainer>
+  <author email="kalevatykhia@gmail.com">Igor Kalevatykh</author>  
+  <license>LGPLv3</license>
+  
+  <buildtool_depend>catkin</buildtool_depend>
+  
+  <build_depend>cmake_modules</build_depend>  
+  <build_depend>kdl_parser</build_depend>
+  <build_depend>orocos_kdl</build_depend>
+  <build_depend>pluginlib</build_depend>
+  <build_depend>roscpp</build_depend>
+  <build_depend>urdf</build_depend>
+  
+  <run_depend>kdl_parser</run_depend>
+  <run_depend>orocos_kdl</run_depend>
+  <run_depend>pluginlib</run_depend>
+  <run_depend>roscpp</run_depend>
+  <run_depend>urdf</run_depend>
+
+  <!--<test_depend>rosunit</test_depend>-->
+
+  <export>
+  </export>
+</package>
